@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  consul:
+    image: consul
+    ports:
+      - 8500:8500
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+  prometheus:
+    build: prometheus
+    image: tadocker11/prometheus:latest
+    ports:
+      - 9090:9090        
+  ms-config:
+    build: ./ms-config
+    image: tadocker11/ms-config:latest
+    ports:
+      - 9999:9999
+  ms-service-a:
+    build: ./ms-service-a
+    image: tadocker11/ms-service-a:latest
+    ports:
+      - 8001:8001
+  ms-service-b:
+    build: ./ms-service-b
+    image: tadocker11/ms-service-b:latest
+  ms-service-b2:
+    build: ./ms-service-b
+    image: tadocker11/ms-service-b2:latest
+  ms-gateway:
+    build: ./ms-gateway
+    image: tadocker11/ms-gateway:latest
+    ports:
+      - 8080:8080
+
